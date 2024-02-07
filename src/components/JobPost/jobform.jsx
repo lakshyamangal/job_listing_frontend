@@ -1,22 +1,35 @@
 import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import styles from "./jobform.module.css";
-import { createJobPost } from "../../apis/job";
+import { createJobPost, updateJobPost } from "../../apis/job";
 
 function Jobform() {
-  const [isEditExistingJobPost] = useState(false);
+  // **note--> This takes the state object that , jobDetails page send in the navigate section//
+  const { state } = useLocation();
+  // **note--> This optional chaining checks if the state variable is filled or not , (it's undefined or not) if it's undefined then it doesn't go further, it jumps to the other statement that is "false" in this case, if it is there then it goes further to edit portion , this practice prevents the error to come when it tries to access a undefined.edit .//
+  const [isEditExistingJobPost] = useState(false || state?.edit);
   const [formData, setFormData] = useState({
-    companyName: " ",
-    logoUrl: "",
-    title: "",
-    description: "",
+    companyName: "" || state?.data?.companyName,
+    logoUrl: "" || state?.data?.logoUrl,
+    title: "" || state?.data?.title,
+    description: "" || state?.data?.description,
     skills: "",
   });
+  console.log(formData);
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await createJobPost({ ...formData, skills: formData.skills.split(",") });
+    if (isEditExistingJobPost) {
+      if (!state.id) return;
+      await updateJobPost(state.id, {
+        ...formData,
+        skills: formData.skills.split(","),
+      });
+    } else {
+      await createJobPost({ ...formData, skills: formData.skills.split(",") });
+    }
   };
   return (
     <div className={styles.contianer}>
@@ -33,6 +46,7 @@ function Jobform() {
             className={styles.input}
             type={"text"}
             name="companyName"
+            value={formData?.companyName}
             onChange={handleChange}
             placeholder="Enter Company Name"
           />
@@ -46,6 +60,7 @@ function Jobform() {
             className={styles.input}
             type={"text"}
             name="logoUrl"
+            value={formData?.logoUrl}
             onChange={handleChange}
             placeholder="Enter Logo Url"
           />
@@ -59,6 +74,7 @@ function Jobform() {
             className={styles.input}
             type={"text"}
             name="title"
+            value={formData?.title}
             onChange={handleChange}
             placeholder="Enter Title"
           />
@@ -72,6 +88,7 @@ function Jobform() {
             className={styles.input}
             type={"text"}
             name="description"
+            value={formData?.description}
             onChange={handleChange}
             placeholder="Enter Description"
           />
@@ -85,6 +102,7 @@ function Jobform() {
             className={styles.input}
             type={"text"}
             name="skills"
+            //value=formData.skills
             onChange={handleChange}
             placeholder="Enter skills "
           />
