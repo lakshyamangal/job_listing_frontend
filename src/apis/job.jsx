@@ -1,11 +1,11 @@
 import axios from "axios";
 const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
-export const getAllJobs = ({ skills, title }) => {
+export const getAllJobs = async ({ skills, title }) => {
   try {
     const reqUrl = `${backendUrl}/job/all?skills=${skills}&title=${title}`;
-    const response = axios.get(reqUrl);
-    console.log(response);
+    const response = await axios.get(reqUrl);
+    return response;
   } catch (error) {
     console.log(error);
     //toast with custom message
