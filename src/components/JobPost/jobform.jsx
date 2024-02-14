@@ -12,17 +12,27 @@ function Jobform() {
     companyName: "" || state?.data?.companyName,
     logoUrl: "" || state?.data?.logoUrl,
     title: "" || state?.data?.title,
+    salary: "" || state?.data?.salary,
+    type: "",
+    place: "",
+    location: "" || state?.data?.location,
     description: "" || state?.data?.description,
-    skills: "",
+    about: "" || state?.data?.about,
+    skills: "" || state?.data?.skills.join(","),
+    info: "" || state?.data?.info,
   });
-  console.log(formData);
+  console.log(state?.data?.skills.join(","));
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (isEditExistingJobPost) {
-      if (!state.id) return;
+      if (!state.id) {
+        alert("provide the jobId");
+        return;
+      }
       await updateJobPost(state.id, {
         ...formData,
         skills: formData.skills.split(","),
@@ -32,10 +42,9 @@ function Jobform() {
     }
   };
   return (
-    <div className={styles.contianer}>
+    <div className={styles.container}>
       <h1 className={styles.h1}>
-        {isEditExistingJobPost ? <>Edit</> : <>Add</>}
-        job description
+        {isEditExistingJobPost ? <>Edit</> : <>Add</>} job description
       </h1>
       <div className={styles.jobForm}>
         <div className={styles.formGroup}>
@@ -68,7 +77,7 @@ function Jobform() {
 
         <div className={styles.formGroup}>
           <label className={styles.label} htmlFor="title">
-            Title:
+            Job Position:
           </label>
           <input
             className={styles.input}
@@ -76,21 +85,89 @@ function Jobform() {
             name="title"
             value={formData?.title}
             onChange={handleChange}
-            placeholder="Enter Title"
+            placeholder="Enter Job Position"
+          />
+        </div>
+
+        <div className={styles.formGroup}>
+          <label className={styles.label} htmlFor="salary">
+            Monthly salary:
+          </label>
+          <input
+            className={styles.input}
+            type={"text"}
+            name="salary"
+            value={formData?.salary}
+            onChange={handleChange}
+            placeholder="Enter Amount in rupees"
+          />
+        </div>
+
+        <div className={styles.formGroup}>
+          <label className={styles.label} htmlFor="type">
+            Job Type:
+          </label>
+          <select name="type" className={styles.input} onChange={handleChange}>
+            <option selected disabled>
+              Select
+            </option>
+            <option>Internship</option>
+            <option>Full Time</option>
+          </select>
+        </div>
+
+        <div className={styles.formGroup}>
+          <label className={styles.label} htmlFor="place">
+            Remote/office:
+          </label>
+          <select className={styles.input} name="place" onChange={handleChange}>
+            <option selected disabled>
+              Select
+            </option>
+            <option>Remote</option>
+            <option>Office</option>
+          </select>
+        </div>
+
+        <div className={styles.formGroup}>
+          <label className={styles.label} htmlFor="location">
+            Location:
+          </label>
+          <input
+            className={styles.input}
+            type={"text"}
+            name="location"
+            value={formData?.location}
+            onChange={handleChange}
+            placeholder="Enter Location "
           />
         </div>
 
         <div className={styles.formGroup}>
           <label className={styles.label} htmlFor="description">
-            Description:
+            Job Description:
           </label>
           <input
-            className={styles.input}
+            className={`${styles.input} ${styles.big}`}
             type={"text"}
             name="description"
             value={formData?.description}
             onChange={handleChange}
-            placeholder="Enter Description"
+            placeholder="Enter Job Description"
+          />
+        </div>
+
+        <div className={styles.formGroup}>
+          <label className={styles.label} htmlFor="about">
+            About Company:
+          </label>
+          <input
+            className={`${styles.input} ${styles.big}`}
+            type={"text"}
+            name="about"
+            value={formData?.about}
+            onChange={handleChange}
+            placeholder="Type About your Company"
           />
         </div>
 
@@ -107,7 +184,22 @@ function Jobform() {
             placeholder="Enter skills "
           />
         </div>
+
+        <div className={styles.formGroup}>
+          <label className={styles.label} htmlFor="info">
+            Information:
+          </label>
+          <input
+            className={styles.input}
+            type={"text"}
+            name="info"
+            value={formData?.info}
+            onChange={handleChange}
+            placeholder="Enter Additional Information"
+          />
+        </div>
       </div>
+
       <button className={styles.cancel}>Cancel</button>
       {isEditExistingJobPost ? (
         <button onClick={handleSubmit} className={styles.add}>

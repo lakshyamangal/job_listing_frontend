@@ -27,8 +27,14 @@ export const createJobPost = async ({
   companyName,
   logoUrl,
   title,
+  salary,
+  type,
+  place,
+  location,
   description,
+  about,
   skills,
+  info,
 }) => {
   try {
     const reqUrl = `${backendUrl}/job/create`;
@@ -36,8 +42,14 @@ export const createJobPost = async ({
       companyName,
       logoUrl,
       title,
+      salary,
+      type,
+      place,
+      location,
       description,
+      about,
       skills,
+      info,
     };
     const token = localStorage.getItem("token");
     axios.defaults.headers.common["Authorization"] = token;
@@ -49,7 +61,19 @@ export const createJobPost = async ({
 };
 export const updateJobPost = async (
   jobId,
-  { companyName, logoUrl, title, description, skills }
+  {
+    companyName,
+    logoUrl,
+    title,
+    salary,
+    type,
+    place,
+    location,
+    description,
+    about,
+    skills,
+    info,
+  }
 ) => {
   try {
     // ** notes--> here you only put ${jobId} not :${jobId} as you put in routes jobDetails/:jobId and just put jobId after -> "/".     //
@@ -58,8 +82,14 @@ export const updateJobPost = async (
       companyName,
       logoUrl,
       title,
+      salary,
+      type,
+      place,
+      location,
       description,
+      about,
       skills,
+      info,
     };
     const token = localStorage.getItem("token");
     axios.defaults.headers.common["Authorization"] = token;

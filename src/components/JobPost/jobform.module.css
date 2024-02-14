@@ -1,7 +1,7 @@
 .container {
   box-sizing: border-box;
   width: 50vw;
-  padding: 10vh 7vw;
+  padding: 3rem;
   position: relative;
 }
 
@@ -20,6 +20,13 @@
 
 .input {
   width: 60%;
+}
+.big {
+  height: 4rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: baseline;
+  align-items: baseline;
 }
 
 .cancel {

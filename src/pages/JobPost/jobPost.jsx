@@ -8,7 +8,7 @@ function JobPost() {
       <Jobform />
       <img
         src={jobImage}
-        style={{ height: "100vh", width: "50vw" }}
+        style={{ maxHeight: "100vh", width: "50vw" }}
         alt="job form image"
       />
     </div>
