@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./jobform.module.css";
 import { createJobPost, updateJobPost } from "../../apis/job";
 
 function Jobform() {
   // **note--> This takes the state object that , jobDetails page send in the navigate section//
   const { state } = useLocation();
+  const navigate = useNavigate();
   // **note--> This optional chaining checks if the state variable is filled or not , (it's undefined or not) if it's undefined then it doesn't go further, it jumps to the other statement that is "false" in this case, if it is there then it goes further to edit portion , this practice prevents the error to come when it tries to access a undefined.edit .//
   const [isEditExistingJobPost] = useState(false || state?.edit);
+  const [noError, setNoError] = useState(false);
   const [formData, setFormData] = useState({
     companyName: "" || state?.data?.companyName,
     logoUrl: "" || state?.data?.logoUrl,
@@ -25,9 +27,16 @@ function Jobform() {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    //**Doubt--> what this below??//
+    for (let key in formData) {
+      if (formData[key] === "") {
+        setNoError(true);
+        return;
+      }
+    }
     if (isEditExistingJobPost) {
       if (!state.id) {
         alert("provide the jobId");
@@ -40,6 +49,7 @@ function Jobform() {
     } else {
       await createJobPost({ ...formData, skills: formData.skills.split(",") });
     }
+    // navigate("/");
   };
   return (
     <div className={styles.container}>
@@ -199,7 +209,6 @@ function Jobform() {
           />
         </div>
       </div>
-
       <button className={styles.cancel}>Cancel</button>
       {isEditExistingJobPost ? (
         <button onClick={handleSubmit} className={styles.add}>
@@ -209,6 +218,20 @@ function Jobform() {
         <button onClick={handleSubmit} className={styles.add}>
           +Add Job
         </button>
+      )}
+      {noError ? (
+        <span
+          style={{
+            color: "red",
+            size: ".8rem",
+            weight: "700",
+            padding: "1rem",
+          }}
+        >
+          All the Fields are Required !!
+        </span>
+      ) : (
+        <></>
       )}
     </div>
   );

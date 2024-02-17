@@ -67,13 +67,13 @@ function JobDetails() {
             <div className={styles.info}>
               <h2>Skill(s) Required</h2>
               {/* It's the thing to see that we have put a key attribute here that is equal to the skill that we wish to print, as skills are unique so are their key's and it's advisable to put a key prop . */}
-              {/* {data.skills.map((skill) => {
+              {data?.skills?.map((skill) => {
                 return (
                   <span className={styles.skill} key={skill}>
                     {skill}
                   </span>
                 );
-              })} */}
+              })}
             </div>
             <div className={styles.info}>
               <h2>About the job/internship</h2>

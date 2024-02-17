@@ -3,8 +3,20 @@ const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 export const getAllJobs = async ({ skills, title }) => {
   try {
-    const reqUrl = `${backendUrl}/job/all?skills=${skills}&title=${title}`;
-    const response = await axios.get(reqUrl);
+    const NewURL = new URL("/api/v1/job/all", backendUrl);
+    if (skills) {
+      NewURL.searchParams.set("skills", skills);
+    } else {
+      NewURL.searchParams.delete("skills");
+    }
+    if (title) {
+      NewURL.searchParams.set("title", title);
+    } else {
+      NewURL.searchParams.delete("title");
+    }
+    // ** Notes-->//
+    // const reqUrl = `${backendUrl}/job/all?skills=${skills}&title=${title}`;
+    const response = await axios.get(NewURL.toString());
     return response;
   } catch (error) {
     console.log(error);

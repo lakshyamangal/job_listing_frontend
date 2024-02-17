@@ -103,13 +103,13 @@
   font-weight: 600;
 }
 
-/* .bottom{
+.bottom {
   position: fixed;
   top: 40vh;
   left: 10vw;
   height: fit-content;
   overflow: scroll;
-} */
+}
 
 .chip {
   box-sizing: border-box;
