@@ -1,26 +1,29 @@
+.page {
+  width: 100vw;
+  height: 100vh;
+}
+.nav {
+  height: 5vhvh;
+  color: #ed5353;
+  width: 100%;
+}
 .container {
   width: 80vw;
   position: fixed;
   top: 15vh;
   left: 10vw;
-  margin-right: auto;
   box-sizing: border-box;
   padding: 2rem 1rem;
-  background-color: white;
-  box-shadow: 0px 4px 23px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 22px 4px #ff202040;
   z-index: 2;
   text-align: center;
+  margin-bottom: 2rem;
+  border-radius: 3px;
+  background-color: white;
 }
-
-.edit {
-  background: #ed5353;
-  border-radius: 6.50784px;
-  padding: 1em 2em;
-  border: none;
-  color: white;
-  font-weight: 600;
+.container:hover {
+  cursor: pointer;
 }
-
 .containerTop {
   text-align: left;
   margin-bottom: 2rem;
@@ -33,45 +36,124 @@
 }
 
 .inputTop {
-  width: 100%;
+  width: 99%;
+  font-family: DM Sans;
+  font-weight: 500;
+  font-size: 1.4rem;
+  color: #9c9c9c;
+  border: 1.8px solid #e3e3e3;
+  padding: 0.3rem;
+  border-radius: 3px;
+  outline: none;
 }
 
 .inputSelect {
   width: 12rem;
+  font-family: roboto;
+  color: #9c9c9c;
+  padding: 0.4rem;
+  font-size: 1.1rem;
+  outline: none;
+  border-radius: 3px;
+}
+.chipContainer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: space-around;
+  flex-direction: row;
+  width: 50rem;
+}
+.chip {
+  box-sizing: border-box;
+  background: #ffeeee;
+  color: black;
+  padding: 0.6rem;
+  border-radius: 3px;
+  margin: 0.5rem 1rem 0rem 0rem;
+}
+.cross {
+  background-color: #ed5353;
+  font-weight: 600;
+  margin-left: 5px;
+  padding: 2px;
+  color: white;
 }
 
-.list {
-  width: 80vw;
-  margin: 7vh auto 12px auto;
+.clear {
+  color: #ed5353;
+  font-family: DM Sans;
+  font-weight: 500;
+  font-size: 1.25rem;
+  margin-right: 1rem;
   background-color: white;
-  box-shadow: 0px 4px 23px 2px rgba(0, 0, 0, 0.1);
-  padding: 2rem 1rem;
+  border: none;
+}
+
+.add {
+  background-color: #ed5353;
+  border: 1px solid #ed5353;
+  border-radius: 3px;
+  padding: 0.5rem 1rem;
+  color: white;
+  font-weight: 500;
+  font-size: 1.25rem;
+}
+
+.bottom {
+  position: fixed;
+  top: 35vh;
+  left: 9vw;
+  height: 60vh;
+  overflow: scroll;
+  width: 82vw;
+}
+
+.bottom::-webkit-scrollbar {
+  display: none;
+}
+
+.card {
+  width: 80vw;
+  margin: 4rem auto;
+  box-shadow: 0px 2px 22px 0px #ff202040;
+  padding: 1rem 1rem;
   box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  font-family: roboto;
+  font-weight: 500;
+  text-transform: capitalize;
+  border-radius: 3px;
 }
 
-.listLeft {
+.cardLeft {
   display: flex;
+}
+
+.cardImage {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  margin-top: 1rem;
+  margin-left: 0.5rem;
 }
 
 .infoLeft {
   margin: 1rem;
-}
-
-.position {
-  font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 1.1rem;
-}
-
-.extraInfo {
   display: flex;
-  gap: 10px;
-  margin-bottom: 0.5rem;
+  flex-direction: column;
 }
-
+.infoLeft:hover {
+  cursor: pointer;
+}
+.infoLeft p {
+  margin-bottom: 0.7rem;
+}
+.infoLeft span {
+  margin-right: 0.8rem;
+  text-align: center;
+}
 .greyText {
   color: #9c9c9c;
 }
@@ -79,49 +161,43 @@
 .redText {
   color: #ed5353;
 }
-
+.skillContainer {
+  padding: 0.4rem;
+}
 .skill {
   background-color: #ffeeee;
   color: black;
-  padding: 0.6rem;
-  border-radius: 6px;
+  padding: 0.2rem 0.5rem;
   margin-right: 1rem;
+  font-family: DM Sans;
+  border-radius: 3px;
+  text-transform: capitalize;
 }
-
+.skill:hover {
+  cursor: pointer;
+}
 .btnGroup {
   display: flex;
   margin-top: 1rem;
   justify-content: space-evenly;
+  font-family: DM Sans;
+}
+
+.edit {
+  background-color: transparent;
+  padding: 1em 2em;
+  border: 1px solid #ed5353;
+  color: #ed5353;
+  font-weight: 600;
+  margin-right: 0.5rem;
+  border-radius: 3px;
 }
 
 .view {
-  background-color: transparent;
-  border: 1px solid #ed5353;
-  border-radius: 6px;
-  padding: 1em 2em;
-  color: #ed5353;
-  font-weight: 600;
-}
-
-.bottom {
-  position: fixed;
-  top: 40vh;
-  left: 10vw;
-  height: fit-content;
-  overflow: scroll;
-}
-
-.chip {
-  box-sizing: border-box;
-  background: #ffeeee;
-  color: black;
-  padding: 0.6rem;
-}
-
-.cross {
   background-color: #ed5353;
-  font-weight: 600;
-  margin-left: 5px;
-  padding: 2px;
+  border: 1px solid #ed5353;
+  border-radius: 3px;
+  padding: 1em 2em;
   color: white;
+  font-weight: 600;
 }

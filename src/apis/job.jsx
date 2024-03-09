@@ -31,6 +31,7 @@ export const getJobDetails = async (jobId) => {
     return response?.data?.data;
   } catch (error) {
     console.log(error);
+    //return Promise.reject(error);
     //toast with custom message
   }
 };
