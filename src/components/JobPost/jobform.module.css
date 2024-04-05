@@ -1,8 +1,11 @@
 .container {
   box-sizing: border-box;
-  width: 50vw;
+  width: 60vw;
+  height: 100vh;
   padding: 3rem;
   position: relative;
+  font-family: DM Sans;
+  overflow-y: scroll;
 }
 
 .formGroup {
@@ -16,17 +19,27 @@
 .h1 {
   font-size: 2.5rem;
   font-weight: 700;
+  margin-bottom: 2rem;
 }
 
 .input {
   width: 60%;
+  border: 1.84px solid #c2c2c2;
+  padding: 0.4rem;
+  outline: none;
+  color: #adadad;
+  border-radius: 3px;
+  font-weight: 500;
+  font-family: DM Sans;
+  font-weight: 500;
+}
+.input::placeholder {
+  color: #adadad;
 }
 .big {
-  height: 4rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: baseline;
-  align-items: baseline;
+  height: 7rem;
+  resize: none;
+  outline: none;
 }
 
 .cancel {

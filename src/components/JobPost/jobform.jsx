@@ -157,7 +157,7 @@ function Jobform() {
           <label className={styles.label} htmlFor="description">
             Job Description:
           </label>
-          <input
+          <textarea
             className={`${styles.input} ${styles.big}`}
             type={"text"}
             name="description"
@@ -171,7 +171,7 @@ function Jobform() {
           <label className={styles.label} htmlFor="about">
             About Company:
           </label>
-          <input
+          <textarea
             className={`${styles.input} ${styles.big}`}
             type={"text"}
             name="about"
@@ -199,8 +199,8 @@ function Jobform() {
           <label className={styles.label} htmlFor="info">
             Information:
           </label>
-          <input
-            className={styles.input}
+          <textarea
+            className={`${styles.input} ${styles.big}`}
             type={"text"}
             name="info"
             value={formData?.info}
